@@ -1,0 +1,5 @@
+flask
+Flask_WTF
+gspread 
+oauth2client
+flask-bootstrap

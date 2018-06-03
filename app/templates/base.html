@@ -1,0 +1,24 @@
+<html>
+	<head>
+		<title>ROBINS</title>
+		<!-- {% from "_formhelpers.html" import render_field %} -->
+	</head>
+	<body bgcolor="#ffc00">
+		<div>ROBINS:
+			<a href="{{ url_for('index') }}">Home</a>
+		</div>
+		<main>
+			{% with messages = get_flashed_messages() %}
+    			{% if messages %}
+    			<ul>
+      				{% for message in messages %}
+      				<li>{{ message }}</li>
+      				{% endfor %}
+   			 	</ul>
+    			{% endif %}
+    		{% endwith %}
+			{% block main %}
+			{% endblock %}
+		</main>
+	</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+	<form id="add" method="POST" action="/">
+        {{ form.hidden_tag() }}
+        <p>
+        	{{ form.student.label }}<br>
+        	{{ form.student(size=16) }}<br>
+        	{% for error in form.student.errors %}
+        		<span style="color: red;">[{{ error }}]</span>
+      		{% endfor %}
+    	</p>
+    </form>
+	<div align="center">
+		<span style="font-size:200; color:#0066FF;">
+			<SCRIPT type="text/JavaScript">
+				var str_month = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+				var str_date = new Array("0", "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th", "29th", "30th", "31st");
+
+				now = new Date();
+				str = str_month[now.getMonth()];
+				str += " ";
+				str += str_date[now.getDate()];
+
+				document.write(str);
+			</SCRIPT>
+		</span>
+		<br>
+	</div>
+	
+    
+
+    {% if students %}	
+		{% for student in students %}
+			<div><p><h1>{{ student.name }}, {{ student.id }}</h1><br>
+				<img src="https://robohash.org/{{ student.name }}{{ student.id }}?set=set3&size=150x150">
+				<br>
+				<form action="{{ url_for('delete_student', student_id=student.id) }}" method=post>
+					<input type=submit value=Delete>
+    			</form>
+				Text: <a href="{{ student.url }}">{{ student.text }}</a><br>
+				Mission: {{ student.mission }}<br>
+			</p></div>
+		{% endfor %}
+	{% endif %}
+{% endblock %}

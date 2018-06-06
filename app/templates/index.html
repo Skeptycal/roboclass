@@ -5,7 +5,16 @@
 
 	<div class="row">
         <div class="col-md-4">
-            {{ wtf.quick_form(form) }}
+            <form id="add" method="POST" action="/">
+            	{{ form.hidden_tag() }}
+            	<p>
+            		{{ form.student.label }}<br>
+            		{{ form.student(size=16) }}<br>
+            		{% for error in form.student.errors %}
+            		<span style="color: red;">[{{ error }}]</span>
+            		{% endfor %}
+            	</p>
+            </form>
         </div>
     </div>
 	<div align="center">

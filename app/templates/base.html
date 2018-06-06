@@ -6,8 +6,17 @@
 
 {% block navbar %}
     <nav class="navbar navbar-default">
-    	<div>ROBINS:
-			<a href="{{ url_for('index') }}">Home</a>
+    	<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="{{ url_for('index')}}">
+					<img src="static/ROBINS1.jpg" alt="logo" style="width:100px;">
+				</a>
+			</div>
+			<div class="nav navbar-nav navbar-left">
+				<ul class="nav navbar-nav">
+					<li><a href="{{ url_for('index') }}">Home</a></li>
+				</ul>
+			</div>
 		</div>
     </nav>
 {% endblock %}

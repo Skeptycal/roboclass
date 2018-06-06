@@ -2,15 +2,15 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-
 	<div class="row">
         <div class="col-md-4">
-            {{ wtf.quick_form(form) }}
+            {{ wtf.quick_form(form, form_type="inline") }}
         </div>
     </div>
-	<div align="center">
-		<h1 class = 'date'>
-			<SCRIPT type="text/JavaScript">
+	<div class="row" align="center">
+		<div class="col">
+			<h1 class = 'date'>
+				<SCRIPT type="text/JavaScript">
 				var str_month = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
 				var str_date = new Array("0", "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th", "29th", "30th", "31st");
 
@@ -20,24 +20,25 @@
 				str += str_date[now.getDate()];
 
 				document.write(str);
-			</SCRIPT>
-		</h1>
-		<br>
+				</SCRIPT>
+			</h1>
+		</div>
 	</div>
-	
-    
+	{% if students %}	
 
-    {% if students %}	
-		{% for student in students %}
-			<div><p><h1>{{ student.name }}, {{ student.id }}</h1><br>
-				<img src="https://robohash.org/{{ student.name }}{{ student.id }}?set=set3&size=100x100">
-				<br>
-				<form action="{{ url_for('delete_student', student_id=student.id) }}" method=post>
-					<input type=submit value=Delete>
-    			</form>
-				Text: <a href="{{ student.url }}">{{ student.text }}</a><br>
-				Mission: {{ student.mission }}<br>
-			</p></div>
-		{% endfor %}
+    	<div class="row" align="center">
+			{% for student in students %}
+				<div class="col-md-2">
+					<h3>{{ student.name }}, {{ student.id }}</h3>
+					<form action="{{ url_for('delete_student', student_id=student.id) }}" method=post>
+						<input type=submit value=Delete>
+	    			</form>
+					<img src="https://robohash.org/{{student.name}}{{student.id}}?set=set3&size=100x100">
+					<h4>Text: <a href="{{ student.url }}">{{ student.text }}</a></h4>
+					<h4>Mission: {{ student.mission }}</h4>
+				</div>
+			{% endfor %}
+		</div>
+
 	{% endif %}
 {% endblock %}

@@ -25,7 +25,7 @@ body { background: #fece3e !important; }
     /* override Bootstrap's 100% width for form controls */
     width: auto;
 }
-.col-sm-auto {
-     width: auto;
-     padding: 0px;     
+.flex {
+  display: flex;
+  justify-content: space-between;
 }

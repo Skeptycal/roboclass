@@ -1,10 +1,20 @@
 {% extends "base.html" %}
-{% import 'bootstrap/wtf.html' as wtf %}
+{% block title %}
+    Home
+{% endblock %}
 
-{% block app_content %}
+{% block main %}
 	<div class="row">
         <div class="col-md-4">
-            {{ wtf.quick_form(form, form_type="inline") }}
+            <form id="add" method="POST" action="/">
+            	{{ form.hidden_tag() }}
+            	<p>
+            		{{ form.student(size=16) }}<br>
+            		{% for error in form.student.errors %}
+            			<span style="color: red;">[{{ error }}]</span>
+            		{% endfor %}
+            	</p>
+			</form>
         </div>
     </div>
 	<div class="row" align="center">
@@ -24,10 +34,12 @@
 			</h1>
 		</div>
 	</div>
+	<br>
+	<br>
 	{% if students %}
     	<div class="row" align="center">
 			{% for student in students %}
-				<div class="col">
+				<div class="col-sm-2">
 					<h3>{{ student.name }}, {{ student.id }}</h3>
 					<form action="{{ url_for('delete_student', student_id=student.id) }}" method=post>
 						<input type=submit value=Delete>

@@ -1,0 +1,27 @@
+
+body { background: #fece3e !important; }
+
+
+.container {
+
+    /* center contents */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.date {
+	font-family: 'Poppins', sans-serif;
+	font-size: 150px; 
+	color: #0066FF;
+
+}
+
+.form-control {
+{
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}

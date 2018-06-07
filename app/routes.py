@@ -1,6 +1,5 @@
 from app import app
 from flask import render_template, url_for, flash, request, redirect, jsonify
-from app.forms import SearchForm
 from config import Client
 
 
@@ -18,19 +17,20 @@ def index():
 	# get students records 
 	students = Client.db.sheet1.get_all_records()
 
-	# searchbar for adding students
-	form = SearchForm()
+	# # searchbar for adding students
+	# form = SearchForm()
 
 	# render form with added students
-	if form.validate_on_submit():
-		for student in students:
-			# add a student to the list of added students
-			if int(form.student.data) == student['id']:
-				if student not in added:
-					added.append(student)
-		return render_template('index.html', form=form, students=added, date=date)
+	if request.method == 'POST':
+		if request.form.get("student"):
+			for student in students:
+				# add a student to the list of added students
+				if int(request.form.get('student')) == student['id']:
+					if student not in added:
+						added.append(student)
+		return render_template('index.html', students=added, date=date)
 
-	return render_template('index.html', form=form, students=added, date=date)
+	return render_template('index.html', students=added, date=date)
 
 @app.route('/delete/<student_id>', methods=['POST'])
 def delete_student(student_id):

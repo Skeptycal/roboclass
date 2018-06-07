@@ -4,19 +4,6 @@
 {% endblock %}
 
 {% block main %}
-	<div class="row">
-        <div class="col-md-4">
-            <form id="add" method="POST" action="/">
-            	{{ form.hidden_tag() }}
-            	<p>
-            		{{ form.student(size=16) }}<br>
-            		{% for error in form.student.errors %}
-            			<span style="color: red;">[{{ error }}]</span>
-            		{% endfor %}
-            	</p>
-			</form>
-        </div>
-    </div>
 	<div class="row" align="center">
 		<div class="col">
 			<h1 class = 'date'>
@@ -39,7 +26,7 @@
 	{% if students %}
     	<div class="row" align="center">
 			{% for student in students %}
-				<div class="col-sm-2">
+				<div class="col">
 					<h3>{{ student.name }}, {{ student.id }}</h3>
 					<form action="{{ url_for('delete_student', student_id=student.id) }}" method=post>
 						<input type=submit value=Delete>

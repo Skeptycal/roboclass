@@ -12,7 +12,7 @@
     <!-- Poppins font -->
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <!-- app's own JavaScript -->
-        <script src="/static/scripts.js"></script>
+    	<!-- <script src="/static/scripts.js"></script> -->
     <!-- app's own CSS -->
         <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"/>
 	
@@ -37,9 +37,9 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav ml-auto">
-                	<form class="form-inline">
-    					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Add</button>
+                	<form class="form-inline" id="add" method="POST" action="/">
+    					<input class="form-control mr-sm-2" type="search" name="student" placeholder="Search" aria-label="Search">
+    					<button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="add">Add</button>
   					</form>
                 </ul>
         </nav>
